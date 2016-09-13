@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.0)
 project ( piwebcam )
 
+find_package( OpenCV )
+
 FILE( GLOB ROOT_INC_FILES "${CMAKE_SOURCE_DIR}/src/*.h" )
 FILE( GLOB ROOT_SRC_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp" )
 
