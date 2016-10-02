@@ -2,26 +2,20 @@
 #include "opencv2/core/core.hpp"
 #include <stdio.h>
 #include <iostream>
+#include "webcam_service.h"
 
 using namespace cv;
 
 int main( int argc, const char* argv[] )
 {
-	VideoCapture cap(CV_CAP_ANY);
-	if(cap.isOpened())
-	{
-		printf( "Connected to webcam.\n" );
-		while(cap.isOpened())
-		{
-			Mat frame;
-			if(!cap.read(frame))
-				break;
+	webcam_service webcam;
 
-		}		
+	webcam.StartRecording();
 
-		printf("Press enter to exit.\n");
-		std::cin.get();
-	}
-	else
-		printf( "Couldn't connect to webcam.\n" );
+	printf("Press enter to exit.\n");
+	std::cin.get();
+
+	webcam.StopRecording();
+
+	return 0;
 }

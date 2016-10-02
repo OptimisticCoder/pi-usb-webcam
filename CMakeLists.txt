@@ -6,7 +6,7 @@ set( Boost_USE_MULTITHREADED ON )
 set( Boost_USE_STATIC_RUNTIME OFF )
 
 find_package( OpenCV )
-find_package( Boost COMPONENTS thread )
+find_package( Boost COMPONENTS thread date_time system chrono )
 
 FILE( GLOB ROOT_INC_FILES "${CMAKE_SOURCE_DIR}/src/*.h" )
 FILE( GLOB ROOT_SRC_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp" )
@@ -21,7 +21,6 @@ include_directories(
 
 link_directories(
 	debug ${LIB_DIRS_DBG} optimized ${LIB_DIRS_REL}
-	debug ${Boost_THREAD_LIBRARY_DEBUG} optimized ${Boost_THREAD_LIBRARY_RELEASE}
 	${BOOST_THREAD_LIBRARY}
 )
 
@@ -34,6 +33,10 @@ add_executable(
 target_link_libraries(
 	piwebcam
 	${LIBS}
+	debug ${Boost_THREAD_LIBRARY_DEBUG} optimized ${Boost_THREAD_LIBRARY_RELEASE}
+	debug ${Boost_DATE_TIME_LIBRARY_DEBUG} optimized ${Boost_DATE_TIME_LIBRARY_RELEASE}
+	debug ${Boost_SYSTEM_LIBRARY_DEBUG} optimized ${Boost_SYSTEM_LIBRARY_RELEASE}
+	debug ${Boost_CHRONO_LIBRARY_DEBUG} optimized ${Boost_CHRONO_LIBRARY_RELEASE}
 	opencv_core
 	opencv_videoio
 )
